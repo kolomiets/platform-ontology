@@ -1,0 +1,31 @@
+
+@prefix : <http://example.org/adr#> .
+@prefix adr: <http://example.org/adr#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/adr>
+  a owl:Ontology ;
+  rdfs:label "Example Ontology" ;
+  rdfs:comment "Starter ontology for the ontology-kit." ;
+  .
+
+adr:Project a owl:Class ;
+  rdfs:label "Project" ;
+  rdfs:comment "A simple project entity." .
+
+adr:Component a owl:Class ;
+  rdfs:label "Component" ;
+  rdfs:comment "A component used by a project." .
+
+adr:usesComponent a owl:ObjectProperty ;
+  rdfs:domain adr:Project ;
+  rdfs:range adr:Component ;
+  rdfs:label "uses component" .
+
+adr:name a owl:DatatypeProperty ;
+  rdfs:domain adr:Project ;
+  rdfs:range xsd:string ;
+  rdfs:label "name" .

@@ -1,0 +1,20 @@
+
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix adr: <http://example.org/adr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+adr:ProjectShape a sh:NodeShape ;
+  sh:targetClass adr:Project ;
+  sh:property [
+    sh:path adr:name ;
+    sh:datatype xsd:string ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+    sh:name "Project name" ;
+  ] ;
+  sh:property [
+    sh:path adr:usesComponent ;
+    sh:class adr:Component ;
+    sh:name "Uses Component should point to Component" ;
+  ] .

@@ -1,0 +1,10 @@
+
+@prefix adr: <http://example.org/adr#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+adr:proj-1 a adr:Project ;
+  adr:name "Demo Project" ;
+  adr:usesComponent adr:comp-1 .
+
+adr:comp-1 a adr:Component ;
+  adr:name "Resistor 10k" .

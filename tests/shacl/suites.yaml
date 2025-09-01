@@ -1,0 +1,4 @@
+
+- data: data/samples/demo.ttl
+  shapes:
+    - src/shapes/core.ttl

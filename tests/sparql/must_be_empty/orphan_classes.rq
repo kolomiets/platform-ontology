@@ -1,0 +1,8 @@
+
+# Classes declared but unused by any instance (should be none)
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+SELECT ?c WHERE {
+  ?c a owl:Class .
+  FILTER NOT EXISTS { ?x a ?c }
+  FILTER(?c != owl:Thing)
+}

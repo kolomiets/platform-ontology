@@ -1,0 +1,66 @@
+
+name: Build & Test Ontology
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build tool image (cacheable)
+        uses: docker/build-push-action@v6
+        with:
+          context: tools/docker
+          tags: ontology-kit:ci
+          load: true
+
+      - name: Run make
+        run: |
+          alias ontod='docker run --rm -v $PWD:/workspace -w /workspace ontology-kit:ci'
+          make
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ontology-dist
+          path: |
+            dist/**
+            docs/**
+
+  pages:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ontology-dist
+          path: out
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out/docs
+      - uses: actions/deploy-pages@v4
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ontology-dist
+          path: out
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "out/dist/*"
+          allowUpdates: true
+          generateReleaseNotes: true
