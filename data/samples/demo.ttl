@@ -1,10 +1,10 @@
 
-@prefix adr: <http://example.org/adr#> .
+@prefix cdm: <http://www.semanticweb.org/kolomiets/ontologies/0.0.1/cdm#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-adr:proj-1 a adr:Project ;
-  adr:name "Demo Project" ;
-  adr:usesComponent adr:comp-1 .
+cdm:proj-1 a cdm:Project ;
+  cdm:name "Demo Project" ;
+  cdm:usesComponent cdm:comp-1 .
 
-adr:comp-1 a adr:Component ;
-  adr:name "Resistor 10k" .
+cdm:comp-1 a cdm:Component ;
+  cdm:name "Resistor 10k" .
