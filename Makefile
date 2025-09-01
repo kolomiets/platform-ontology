@@ -20,7 +20,7 @@ serialize:
 	$(DOCKER) -lc "tools/scripts/build_serializations.sh"
 
 docs:
-	$(DOCKER) -lc "mkdir -p $(DOCS) && java -jar /opt/widoco.jar -ontFile $(SRC) -outFolder $(DOCS) -rewriteAll -getOntologyMetadata -noPlaceHolderText -doNotDisplaySerializations -oops -webVowl"
+	$(DOCKER) -lc "mkdir -p $(DOCS) && java -jar /opt/widoco.jar -ontFile $(SRC) -outFolder $(DOCS) -rewriteAll -getOntologyMetadata -noPlaceHolderText -oops -webVowl"
 
 test: shacl sparql
 
